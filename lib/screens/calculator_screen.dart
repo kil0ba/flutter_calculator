@@ -20,18 +20,20 @@ class CalculatorScreen extends StatelessWidget {
     }
 
     return CupertinoPageScaffold(
-      child: SafeArea(
-        bottom: false,
-        child: ChangeNotifierProvider(
-          create: (ctx) => Calculator(),
-          child: Container(
-            width: double.infinity,
+      child: ChangeNotifierProvider(
+        create: (ctx) => Calculator(),
+        child: Container(
+          padding: EdgeInsets.only(top: 5),
+          width: double.infinity,
+          alignment: Alignment.bottomCenter,
+          child: SafeArea(
+            bottom: false,
             child: orientation == Orientation.portrait
                 ? Column(
                     children: childredBuilder(),
                   )
-                : Padding(
-                    padding: const EdgeInsets.only(top: 7),
+                : Positioned(
+                    bottom: 0,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.end,

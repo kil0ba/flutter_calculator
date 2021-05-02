@@ -9,7 +9,7 @@ class Calculator with ChangeNotifier {
   }
 
   void addSymbolToCurrentNumber(String symbol) {
-    if (_equation == '0' || _equation == 'error') {
+    if (_equation == '0' || _equation == 'error' || _equation == 'Infinity') {
       if (symbol == '00' || int.tryParse(symbol) == null) {
         _equation = '0';
       } else {
@@ -18,9 +18,16 @@ class Calculator with ChangeNotifier {
     } else {
       final lastSymbol =
           _equation.trimRight()[_equation.trimRight().length - 1];
+      // check for two operations
       if (int.tryParse(symbol) == null &&
           int.tryParse(lastSymbol) == null &&
           (lastSymbol != '%' && symbol != '% ')) {
+        return;
+      }
+      // check for second dot
+      final splittedEq = _equation.split(' ');
+      final lastNum = splittedEq[splittedEq.length - 1];
+      if (lastNum.contains('.') && symbol == '.') {
         return;
       }
       _equation += symbol;

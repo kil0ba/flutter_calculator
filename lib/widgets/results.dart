@@ -9,12 +9,21 @@ class Results extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final orientation = MediaQuery.of(context).orientation;
+
     return Container(
+      constraints: orientation == Orientation.portrait
+          ? null
+          : BoxConstraints(maxWidth: size.width - 500),
+      height: orientation == Orientation.portrait
+          ? size.height - 500 > 0
+              ? size.height - 500
+              : 50
+          : null,
       child: Padding(
         padding: EdgeInsets.only(
-          top: size.height - 600 > 0 ? size.height - 600 : 50,
-          bottom: 40,
-          right: 30,
+          right: 15,
+          bottom: 30,
         ),
         child: Align(
           alignment: Alignment.centerRight,
@@ -23,7 +32,7 @@ class Results extends StatelessWidget {
               child: Text(
                 calculator.equation,
                 style: TextStyle(
-                  fontSize: 45,
+                  fontSize: 85,
                   color: CupertinoTheme.of(context).primaryContrastingColor,
                 ),
               ),
