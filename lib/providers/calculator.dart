@@ -36,7 +36,9 @@ class Calculator with ChangeNotifier {
   }
 
   void deleteLastSymbolFromEquation() {
-    if (_equation.length == 1 || _equation == 'error') {
+    if (_equation.length == 1 ||
+        _equation == 'error' ||
+        _equation == 'Infinity') {
       _equation = '0';
     } else {
       var editedEquation = _equation.trimRight();
