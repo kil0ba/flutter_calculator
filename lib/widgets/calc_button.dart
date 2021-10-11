@@ -1,3 +1,4 @@
+import '../utility/platform.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vibration/vibration.dart';
@@ -33,7 +34,7 @@ class CalcButton extends StatelessWidget {
         ),
         onPressed: () async {
           onPressed();
-          if (await Vibration.hasVibrator()) {
+          if (isMobile() && await Vibration.hasVibrator()) {
             Vibration.vibrate(duration: 3);
           }
         },

@@ -12,7 +12,7 @@ class CalculatorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final orientation = MediaQuery.of(context).orientation;
 
-    List<Widget> childredBuilder() {
+    List<Widget> childrenBuilder() {
       return [
         Results(),
         CalculatorButtons(),
@@ -30,15 +30,12 @@ class CalculatorScreen extends StatelessWidget {
             bottom: false,
             child: orientation == Orientation.portrait
                 ? Column(
-                    children: childredBuilder(),
+                    children: childrenBuilder(),
                   )
-                : Positioned(
-                    bottom: 0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: childredBuilder(),
-                    ),
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: childrenBuilder(),
                   ),
           ),
         ),

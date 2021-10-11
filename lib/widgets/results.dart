@@ -14,7 +14,7 @@ class Results extends StatelessWidget {
     return Container(
       constraints: orientation == Orientation.portrait
           ? null
-          : BoxConstraints(maxWidth: size.width - 500),
+          : BoxConstraints(maxWidth: size.width - 400),
       height: orientation == Orientation.portrait
           ? size.height - 500 > 0
               ? size.height - 500
@@ -23,7 +23,6 @@ class Results extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.only(
           right: 15,
-          bottom: 30,
         ),
         child: Align(
           alignment: Alignment.centerRight,

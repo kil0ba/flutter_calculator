@@ -1,4 +1,5 @@
 import 'package:calculator/providers/calculator.dart';
+import 'package:calculator/utility/constants.dart';
 import 'package:calculator/widgets/calc_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -164,7 +165,28 @@ class _CalculatorButtonsState extends State<CalculatorButtons>
                         CupertinoIcons.equal,
                         color: CupertinoColors.systemRed,
                       ),
-                      onPressed: calc.calculate,
+                      onPressed: () {
+                        final isShowMeme = calc.calculate();
+                        if (isShowMeme) {
+                          showCupertinoDialog<void>(
+                            context: context,
+                            builder: (BuildContext context) =>
+                                CupertinoAlertDialog(
+                              content: const Text(
+                                PASTE,
+                              ),
+                              actions: <CupertinoDialogAction>[
+                                CupertinoDialogAction(
+                                  child: const Text(SHIT_WORD),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                        }
+                      },
                     ),
                   ],
                 ),

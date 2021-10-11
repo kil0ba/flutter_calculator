@@ -48,7 +48,7 @@ class Calculator with ChangeNotifier {
     notifyListeners();
   }
 
-  void calculate() {
+  bool calculate() {
     try {
       var parsedEquation = _equation.replaceAll('%', '/ 100');
       parsedEquation = parsedEquation.replaceAll('÷', '/');
@@ -65,6 +65,7 @@ class Calculator with ChangeNotifier {
     }
 
     notifyListeners();
+    return _equation == 'Infinity';
   }
 
   void clearEquation() {
