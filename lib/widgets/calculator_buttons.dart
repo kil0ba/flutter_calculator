@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:calculator/providers/calculator.dart';
 import 'package:calculator/utility/constants.dart';
 import 'package:calculator/widgets/calc_button.dart';
@@ -6,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CalculatorButtons extends StatefulWidget {
-  const CalculatorButtons({Key key}) : super(key: key);
+  const CalculatorButtons({Key? key}) : super(key: key);
 
   @override
   _CalculatorButtonsState createState() => _CalculatorButtonsState();
@@ -14,8 +16,8 @@ class CalculatorButtons extends StatefulWidget {
 
 class _CalculatorButtonsState extends State<CalculatorButtons>
     with SingleTickerProviderStateMixin {
-  AnimationController controller;
-  Animation<Offset> offset;
+  AnimationController? controller;
+  Animation<Offset>? offset;
 
   @override
   void initState() {
@@ -27,12 +29,12 @@ class _CalculatorButtonsState extends State<CalculatorButtons>
     );
 
     offset = Tween<Offset>(begin: Offset(0, 2), end: Offset(0.0, 0.0))
-        .animate(controller);
+        .animate(controller as Animation<double>);
 
     Future.delayed(Duration(milliseconds: 1)).then(
       (value) => {
         setState(() {
-          controller.forward();
+          controller?.forward();
         })
       },
     );
@@ -55,7 +57,7 @@ class _CalculatorButtonsState extends State<CalculatorButtons>
 
     Widget transitionBuilder() {
       return SlideTransition(
-        position: offset,
+        position: offset!,
         child: Container(
           constraints: BoxConstraints(maxHeight: 500),
           width: orientation == Orientation.portrait ? double.infinity : 400,
@@ -167,7 +169,7 @@ class _CalculatorButtonsState extends State<CalculatorButtons>
                       ),
                       onPressed: () {
                         final isShowMeme = calc.calculate();
-                        if (isShowMeme) {
+                        if (isShowMeme && false) {
                           showCupertinoDialog<void>(
                             context: context,
                             builder: (BuildContext context) =>

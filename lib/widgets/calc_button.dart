@@ -8,8 +8,8 @@ class CalcButton extends StatelessWidget {
   final Function onPressed;
 
   CalcButton({
-    @required this.child,
-    this.onPressed,
+    required this.child,
+    required this.onPressed,
   });
 
   @override
@@ -34,7 +34,8 @@ class CalcButton extends StatelessWidget {
         ),
         onPressed: () async {
           onPressed();
-          if (isMobile() && await Vibration.hasVibrator()) {
+          var hasVib = await Vibration.hasVibrator();
+          if (isMobile() && hasVib != null) {
             Vibration.vibrate(duration: 3);
           }
         },
